@@ -99,13 +99,13 @@
 	    <repository>
 	      <id>nexus1</id>
 	      <name>Releases Nexus Repository</name>
-	      <url>http://13.232.206.241:8081/repository/Maha1-Release/</url>
+	      <url>http://13.232.206.241:8081/repository/mahav-maven/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus1</id>
 	      <name>Snapshot Nexus Repository </name>
-	      <url>http://13.232.206.241:8081/repository/Maha1-Snap/</url>
+	      <url>http://13.232.206.241:8081/repository/maha-maven-snap/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
