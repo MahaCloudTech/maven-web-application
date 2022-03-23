@@ -1,0 +1,39 @@
+node{
+        
+        def mvnHome = tool name:"Maven"
+    
+        stage ("checkout Cdode")
+        {
+         git branch: 'development', credentialsId: '991da211-074e-4eb9-9a63-ac6f23f96b59', url: 'https://github.com/MahaCloudTech/maven-web-application.git'
+        }
+        
+        stage("Build")
+        {
+         sh "${mvnHome}/bin/mvn clean package" 
+        }
+        
+        stage("SonarReport")
+        {
+         sh "${mvnHome}/bin/mvn sonar:sonar" 
+        }
+        stage("Artifact Repository")
+        {
+         sh "${mvnHome}/bin/mvn deploy" 
+        }
+        
+        stage("final deploy")
+        {
+        sshagent(['a60a5cc0-6b78-4dde-a784-a0f01d202929']) {
+            
+            sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.110.123.253:/opt/apache-tomcat-9.0.60/webapps"
+    
+            }
+        }
+        
+        stage("Notification")
+        {
+            emailext body: 'Hi Deployment Succesfull', subject: 'SeverDeployed', to: 'shashi1103@gmail.com'
+        }
+        
+    }
+ 
