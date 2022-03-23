@@ -33,7 +33,7 @@ node{
         stage("Notification")
         {
             emailext body: 'Hi Deployment Succesfull', subject: 'SeverDeployed', to: 'shashi1103@gmail.com'
-        } /*
+        } */
         
     }
  
